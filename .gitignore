@@ -1,5 +1,5 @@
-*.flatpak
 .flatpak-builder
 build-dir
+bundle-dir
 export-dir
-source-dir
+repository-dir
