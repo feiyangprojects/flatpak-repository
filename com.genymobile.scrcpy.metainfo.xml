@@ -21,8 +21,11 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="2.6.1" date="2024-08-02">
+    <release version="2.7" date="2024-09-15">
       <description></description>
+    </release>
+    <release version="2.6.1" date="2024-08-02">
+      <description/>
     </release>
   </releases>
 </component>
