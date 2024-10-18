@@ -1,0 +1,64 @@
+name: Flatpak CI
+
+on:
+  push:
+    branches:
+    - "**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Setup environment
+        run: |
+          sudo apt update
+          sudo apt install --yes flatpak flatpak-builder gnupg rclone
+          sudo flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo
+      - name: Get runtime name
+        id: runtimeName
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq '.runtime' '${{ github.ref_name }}.yml'
+      - name: Get runtime version
+        id: runtimeVersion
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq '.runtime-version' '${{ github.ref_name }}.yml'
+      - name: Get sdk name
+        id: sdkName
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq '.sdk' '${{ github.ref_name }}.yml'
+      - name: Install runtime and sdk
+        run: |
+          ARCH="$(uname -p)"
+          sudo flatpak install --assumeyes "${{ steps.runtimeName.outputs.result }}/$ARCH/${{ steps.runtimeVersion.outputs.result }}" "${{ steps.sdkName.outputs.result }}/$ARCH/${{ steps.runtimeVersion.outputs.result }}"
+      - name: Build Flatpak bundle
+        run: |
+          mkdir -p bundle-dir
+          flatpak-builder build-dir '${{ github.ref_name }}.yml'
+          flatpak build-export export-dir build-dir
+          flatpak build-bundle export-dir 'bundle-dir/${{ github.ref_name }}.flatpak' '${{ github.ref_name }}'
+      - name: Setup Rclone configuration
+        run: base64 -d <<< '${{ secrets.FLATPAK_RCLONE_CONFIG }}' > rclone.conf
+      - name: Publish Flatpak bundle
+        run: rclone --progress --config '${{ github.workspace }}/rclone.conf' copy 'bundle-dir/${{ github.ref_name }}.flatpak' 'storage:flatpakbundle'
+      - name: Setup GnuPG configuration
+        run: |
+          base64 -d <<< '${{ secrets.FLATPAK_GPG_KEY }}' > flatpak.gpg
+          gpg --import flatpak.gpg
+      - name: Sync Flatpak bundle
+        run: rclone --progress --config '${{ github.workspace }}/rclone.conf' sync 'storage:flatpakbundle' 'bundle-dir'
+      - name: Build Flatpak repository
+        run: |
+          ostree init --mode 'archive' --repo 'repository-dir'
+          find bundle-dir -name '*.flatpak' -exec flatpak build-import-bundle --gpg-sign '${{ secrets.FLATPAK_GPG_KEY_ID }}' 'repository-dir' {} \;
+      - name: Publish Flatpak repository
+        run: |
+          rclone --progress --config '${{ github.workspace }}/rclone.conf' purge 'storage:flatpak' || true
+          rclone --progress --config '${{ github.workspace }}/rclone.conf' copy 'repository-dir' 'storage:flatpak'
