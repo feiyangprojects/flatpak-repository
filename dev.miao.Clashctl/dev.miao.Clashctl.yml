@@ -1,0 +1,43 @@
+id: dev.miao.Clashctl
+
+command: clashctl
+
+finish-args:
+  - --share=network
+  - --persist=.config
+
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  env:
+    CARGO_HOME: /run/build/clashctl/cargo
+
+modules:
+  - name: clashctl
+    buildsystem: simple
+    build-commands:
+      - cargo --offline fetch --manifest-path Cargo.toml
+      - cargo --offline build --release
+      - install -D --mode=755 target/release/clashctl /app/bin/clashctl
+    sources:
+      - type: archive
+        url: https://github.com/George-Miao/Clashctl/archive/refs/tags/0.3.3.tar.gz
+        sha256: 0d9bc5b67af78b47bc2a270aa0736f70bd0db9d217667cb44802dd96a313cea1
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/George-Miao/Clashctl/releases/latest
+          version-query: .tag_name
+          url-query: '"https://github.com/George-Miao/Clashctl/archive/refs/tags/" + $version + ".tar.gz"'
+      - cargo-sources.json
+  - name: clashctl-metadata
+    buildsystem: simple
+    build-commands:
+      - install -D dev.miao.Clashctl.desktop /app/share/applications/dev.miao.Clashctl.desktop
+    sources:
+      - type: file
+        path: dev.miao.Clashctl.desktop

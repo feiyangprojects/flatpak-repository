@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Clashctl
+GenericName=CLI for interacting with clash
+Comment=Easy-to-use TUI & CLI to interact with Clash RESTful API
+Exec=/app/bin/clashctl
+#Icon=dev.miao.Clashctl
+Terminal=true
+Type=Application
+Categories=Utility;RemoteAccess;
+StartupNotify=false
