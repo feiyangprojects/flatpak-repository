@@ -1,0 +1,63 @@
+id: io.github.tdesktop_x64.TDesktop
+
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+
+command: Telegram
+
+rename-icon: icon512
+
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --device=all
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.gnome.Mutter.IdleMonitor
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --talk-name=com.canonical.AppMenu.Registrar
+  - --talk-name=com.canonical.indicator.application
+  - --talk-name=org.ayatana.indicator.application
+  - --talk-name=org.sigxcpu.Feedback
+
+cleanup:
+  - /lib/debug
+
+modules:
+  - name: tdesktop-x64
+    buildsystem: simple
+    build-commands:
+      - sed -Ei 's#(Exec=).+#\1/app/bin/Telegram#' io.github.tdesktop_x64.TDesktop.service
+      - mkdir -p /app/share/dbus-1/services/
+      - install -Dm755 Telegram -t /app/bin/
+      - install -Dm644 io.github.tdesktop_x64.TDesktop.desktop -t /app/share/applications/
+      - install -Dm644 io.github.tdesktop_x64.TDesktop.service /app/share/dbus-1/services/
+      - install -Dm644 icon512.png -t /app/share/icons/hicolor/512x512/apps/
+      - install -Dm644 io.github.tdesktop_x64.TDesktop.metainfo.xml -t /app/share/metainfo/
+    sources:
+      - type: archive
+        only-arches:
+          - x86_64
+        url: https://github.com/TDesktop-x64/tdesktop/releases/download/v1.1.89/64Gram_1.1.89_linux.zip
+        sha256: 492919391cbcd1709e6cb35928d47f801fb3ab5bf7bc6782f83bd49c94fb34d8
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/TDesktop-x64/tdesktop/releases/latest
+          version-query: .tag_name
+          url-query: .assets[] | select(.name | test("_linux\\.zip"))
+            | .browser_download_url
+      - type: file
+        sha256: aed05b3bec314fd0e800b92e20924976fc77d1458798797c8323e65abfd3491d
+        url: https://raw.githubusercontent.com/TDesktop-x64/tdesktop/dev/lib/xdg/io.github.tdesktop_x64.TDesktop.desktop
+      - type: file
+        sha256: 9783e323dc25e3b074c8762b5c071796cf22bb725ae763a09119c77f37236844
+        url: https://raw.githubusercontent.com/TDesktop-x64/tdesktop/refs/heads/dev/lib/xdg/io.github.tdesktop_x64.TDesktop.service
+      - type: file
+        sha256: 7b89613d8962a04afbf36db62449c93839d9b74258e8d46d8a43800d8783e55c
+        url: https://raw.githubusercontent.com/TDesktop-x64/tdesktop/refs/heads/dev/lib/xdg/io.github.tdesktop_x64.TDesktop.metainfo.xml
+      - type: file
+        sha256: e297771c75bd2f81d637a3234f83568be62092f67d16946be23895fa92fa7119
+        url: https://raw.githubusercontent.com/TDesktop-x64/tdesktop/refs/heads/dev/Telegram/Resources/art/icon512.png
