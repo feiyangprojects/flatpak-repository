@@ -1,0 +1,118 @@
+id: com.genymobile.scrcpy
+
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    add-ld-path: .
+
+command: scrcpy.sh
+
+rename-desktop-file: scrcpy.desktop
+rename-icon: scrcpy
+
+finish-args:
+  - --device=all
+  - --env=SCRCPY_ICON_PATH=/app/share/icons/hicolor/256x256/apps/com.genymobile.scrcpy.png
+  - --share=ipc
+  - --share=network
+  - --socket=pulseaudio
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --persist=.android
+
+modules:
+  - name: googletest
+    buildsystem: cmake
+    config-opts:
+      - -DBUILD_GMOCK=OFF
+    cleanup:
+      - '*'
+    sources:
+      - type: archive
+        url: https://github.com/google/googletest/releases/download/v1.17.0/googletest-1.17.0.tar.gz
+        sha256: 65fab701d9829d38cb77c14acdc431d2108bfdbf8979e40eb8ae567edf10b27c
+        x-checker-data:
+          type: anitya
+          project-id: 18290
+          url-template: https://github.com/google/googletest/releases/download/v$version/googletest-$version.tar.gz
+  - name: protobuf
+    buildsystem: cmake
+    config-opts:
+      - -Dprotobuf_BUILD_TESTS=OFF
+    cleanup:
+      - '*'
+    sources:
+      - type: archive
+        url: https://github.com/protocolbuffers/protobuf/releases/download/v33.0/protobuf-33.0.tar.gz
+        sha256: cbc536064706b628dcfe507bef386ef3e2214d563657612296f1781aa155ee07
+        x-checker-data:
+          type: anitya
+          project-id: 3715
+          url-template: https://github.com/protocolbuffers/protobuf/releases/download/v$version/protobuf-$version.tar.gz
+  - name: android-tools
+    buildsystem: cmake
+    builddir: true
+    config-opts:
+      - -DANDROID_TOOLS_USE_BUNDLED_LIBUSB=ON
+      - -DANDROID_TOOLS_LIBUSB_ENABLE_UDEV=ON
+    cleanup:
+      - /lib/debug/bin
+      - /share/android-tools
+      - /share/bash-completion
+      - /share/man
+    sources:
+      - type: archive
+        url: https://github.com/nmeum/android-tools/releases/download/35.0.2/android-tools-35.0.2.tar.xz
+        sha256: d2c3222280315f36d8bfa5c02d7632b47e365bfe2e77e99a3564fb6576f04097
+        x-checker-data:
+          type: anitya
+          project-id: 226905
+          url-template: https://github.com/nmeum/android-tools/releases/download/$version/android-tools-$version.tar.xz
+      - type: patch
+        path: patches/android-tools/0001-adb-only.patch
+  - name: scrcpy
+    buildsystem: meson
+    config-opts:
+      - --buildtype=release
+      - -Db_lto=true
+      - -Dprebuilt_server=scrcpy-server
+      - --strip
+    cleanup:
+      - /share/applications/scrcpy-console.desktop
+      - /share/bash-completion
+      - /share/man
+      - /share/zsh
+    sources:
+      - type: archive
+        url: https://github.com/Genymobile/scrcpy/archive/refs/tags/v3.3.3.tar.gz
+        sha256: 87fcd360a6bb6ca070ffd217bd33b33fb808b0a1572b464da51dde3fd3f6f60e
+        x-checker-data:
+          type: anitya
+          project-id: 226924
+          url-template: https://github.com/Genymobile/scrcpy/archive/refs/tags/v$version.tar.gz
+      - type: file
+        url: https://github.com/Genymobile/scrcpy/releases/download/v3.3.3/scrcpy-server-v3.3.3
+        sha256: 7e70323ba7f259649dd4acce97ac4fefbae8102b2c6d91e2e7be613fd5354be0
+        dest-filename: scrcpy-server
+        x-checker-data:
+          type: anitya
+          project-id: 226924
+          url-template: https://github.com/Genymobile/scrcpy/releases/download/v$version/scrcpy-server-v$version
+  - name: scrcpy-wrapper
+    buildsystem: simple
+    build-commands:
+      - install -D scrcpy.sh /app/bin/scrcpy.sh
+    sources:
+      - type: file
+        path: scrcpy.sh
+  - name: scrcpy-metadata
+    buildsystem: simple
+    build-commands:
+      - install -D com.genymobile.scrcpy.metainfo.xml /app/share/metainfo/com.genymobile.scrcpy.metainfo.xml
+    sources:
+      - type: file
+        path: com.genymobile.scrcpy.metainfo.xml

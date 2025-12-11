@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.genymobile.scrcpy</id>
+  
+  <name>scrcpy</name>
+  <summary>Display and control your Android device</summary>
+  
+  <metadata_license>MIT</metadata_license>
+  <project_license>Apache-2.0</project_license>
+  
+  <description>
+    <p>
+      This application mirrors Android devices (video and audio) connected via USB or over TCP/IP, and allows to control the device with the keyboard and the mouse of the computer. It does not require any root access. It works on Linux, Windows and macOS.
+    </p>
+  </description>
+  
+  <launchable type="desktop-id">com.genymobile.scrcpy.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/Genymobile/scrcpy/master/assets/screenshot-debian-600.jpg</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="3.3.3" date="2025-09-27">
+      <description></description>
+    </release>
+    <release version="3.3.1" date="2025-06-20">
+      <description/>
+    </release>
+    <release version="3.0.2" date="2024-12-04">
+      <description/>
+    </release>
+    <release version="2.7" date="2024-09-15">
+      <description/>
+    </release>
+    <release version="2.6.1" date="2024-08-02">
+      <description/>
+    </release>
+  </releases>
+</component>

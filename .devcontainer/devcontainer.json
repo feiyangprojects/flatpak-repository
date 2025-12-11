@@ -1,0 +1,5 @@
+{
+    "name": "Flatpak",
+    "image": "ghcr.io/fei1yang/devcontainer-flatpak:freedesktop",
+    "privileged": true
+}

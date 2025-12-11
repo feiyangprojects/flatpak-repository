@@ -1,0 +1,100 @@
+diff --git a/vendor/CMakeLists.adb.txt b/vendor/CMakeLists.adb.txt
+index f43bd92..94e5aba 100644
+--- a/vendor/CMakeLists.adb.txt
++++ b/vendor/CMakeLists.adb.txt
+@@ -165,6 +165,21 @@ add_library(libcrypto STATIC
+ target_include_directories(libcrypto PUBLIC
+ 	core/libcrypto_utils/include boringssl/include)
+ 
++add_library(libzip STATIC
++	libziparchive/zip_archive.cc
++	libziparchive/zip_archive_stream_entry.cc
++	libziparchive/zip_cd_entry_map.cc
++	libziparchive/zip_error.cpp
++	libziparchive/zip_writer.cc)
++
++target_compile_definitions(libzip PRIVATE -DZLIB_CONST)
++target_include_directories(libzip PUBLIC
++	libziparchive/include
++	libziparchive/incfs_support/include
++	core/include
++	logging/liblog/include
++	libbase/include)
++
+ add_executable(adb
+ 	  adb/adb.cpp
+ 	  adb/adb_io.cpp
+diff --git a/vendor/CMakeLists.txt b/vendor/CMakeLists.txt
+index 8354cc0..8a7dad7 100644
+--- a/vendor/CMakeLists.txt
++++ b/vendor/CMakeLists.txt
+@@ -112,42 +112,42 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
+ 
+ include(CMakeLists.libbase.txt)
+ include(CMakeLists.adb.txt)
+-include(CMakeLists.sparse.txt)
+-include(CMakeLists.fastboot.txt)
+-include(CMakeLists.f2fstools.txt)
+-include(CMakeLists.mke2fs.txt)
+-include(CMakeLists.partition.txt)
+-include(CMakeLists.mkbootimg.txt)
+-include(CMakeLists.libufdt.txt)
+-include(CMakeLists.avb.txt)
++#include(CMakeLists.sparse.txt)
++#include(CMakeLists.fastboot.txt)
++#include(CMakeLists.f2fstools.txt)
++#include(CMakeLists.mke2fs.txt)
++#include(CMakeLists.partition.txt)
++#include(CMakeLists.mkbootimg.txt)
++#include(CMakeLists.libufdt.txt)
++#include(CMakeLists.avb.txt)
+ 
+ # Targets which should be installed by `make install`.
+ install(TARGETS
+-	"${ANDROID_MKE2FS_NAME}"
++#	"${ANDROID_MKE2FS_NAME}"
+ 	adb
+-	append2simg
+-	fastboot
+-	img2simg
+-	lpadd
+-	lpdump
+-	lpflash
+-	lpmake
+-	lpunpack
+-	make_f2fs
+-	sload_f2fs
+-	simg2img
+-	ext2simg
++#	append2simg
++#	fastboot
++#	img2simg
++#	lpadd
++#	lpdump
++#	lpflash
++#	lpmake
++#	lpunpack
++#	make_f2fs
++#	sload_f2fs
++#	simg2img
++#	ext2simg
+ 	DESTINATION bin)
+ 
+-if(NOT APPLE)
+-	install(TARGETS
+-		e2fsdroid
+-		DESTINATION bin)
+-endif()
++#if(NOT APPLE)
++#	install(TARGETS
++#		e2fsdroid
++#		DESTINATION bin)
++#endif()
+ 
+ # Install common completion files.
+ install(FILES adb/adb.bash RENAME adb DESTINATION "${COMPLETION_COMMON_DIR}")
+-install(FILES core/fastboot/fastboot.bash RENAME fastboot DESTINATION "${COMPLETION_COMMON_DIR}")
++#install(FILES core/fastboot/fastboot.bash RENAME fastboot DESTINATION "${COMPLETION_COMMON_DIR}")
+ 
+ # Install license files.
+ # Disabled for now, see https://github.com/nmeum/android-tools/issues/30#issuecomment-855365636
