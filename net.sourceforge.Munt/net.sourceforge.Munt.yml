@@ -1,0 +1,46 @@
+id: net.sourceforge.Munt
+
+runtime: org.kde.Platform
+runtime-version: '6.9'
+sdk: org.kde.Sdk
+
+command: mt32emu-qt
+
+rename-desktop-file: mt32emu-qt.desktop
+rename-icon: munt
+
+cleanup:
+  - /include/
+  - /lib/
+  - /share/doc/
+
+finish-args:
+  - --device=dri
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --filesystem=xdg-music:ro
+
+modules:
+  - name: munt
+    buildsystem: cmake
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://github.com/munt/munt/archive/refs/tags/libmt32emu_2_7_2.tar.gz
+        sha256: 3b0beff64e83d2b4879baba2326eed1300edc9663b3dc52621fc74d196ca9a80
+        x-checker-data:
+          type: html
+          url: https://raw.githubusercontent.com/munt/munt/refs/heads/master/mt32emu/NEWS.txt
+          version-pattern: \t([\d\.]+) released\.
+          url-template: https://github.com/munt/munt/archive/refs/tags/libmt32emu_${version0}_${version1}_${version2}.tar.gz
+      - type: patch
+        path: patches/3e62f5ae99a0caa2175e73ffd027d085276cd933.patch
+  - name: munt-metadata
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 net.sourceforge.Munt.metainfo.xml -t /app/share/metainfo/
+    sources:
+      - type: file
+        path: net.sourceforge.Munt.metainfo.xml

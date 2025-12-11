@@ -1,0 +1,114 @@
+From 3e62f5ae99a0caa2175e73ffd027d085276cd933 Mon Sep 17 00:00:00 2001
+From: Fei Yang <io@feiyang.eu.org>
+Date: Tue, 27 Feb 2024 09:52:46 +0000
+Subject: [PATCH] mt32emu-qt: Added repeat for MIDI Player
+
+---
+ mt32emu_qt/src/MidiPlayerDialog.cpp | 21 +++++++++++++++++----
+ mt32emu_qt/src/MidiPlayerDialog.h   |  2 ++
+ mt32emu_qt/src/MidiPlayerDialog.ui  | 18 +++++++++++++++++-
+ 3 files changed, 36 insertions(+), 5 deletions(-)
+
+diff --git a/mt32emu_qt/src/MidiPlayerDialog.cpp b/mt32emu_qt/src/MidiPlayerDialog.cpp
+index c41e7bef4..f30ce7acc 100644
+--- a/mt32emu_qt/src/MidiPlayerDialog.cpp
++++ b/mt32emu_qt/src/MidiPlayerDialog.cpp
+@@ -23,6 +23,7 @@ MidiPlayerDialog::MidiPlayerDialog(Master *master, QWidget *parent) : QDialog(pa
+ 	ui->setupUi(this);
+ 	standardTitle = windowTitle();
+ 	ui->playButton->setEnabled(false);
++	ui->repeatCheckBox->setCheckState(Qt::Unchecked);
+ 	connect(&smfDriver, SIGNAL(playbackFinished(bool)), SLOT(handlePlaybackFinished(bool)));
+ 	connect(&smfDriver, SIGNAL(playbackTimeChanged(quint64, quint32)), SLOT(handlePlaybackTimeChanged(quint64, quint32)));
+ 	connect(&smfDriver, SIGNAL(tempoUpdated(quint32)), SLOT(handleTempoSet(quint32)));
+@@ -189,6 +190,14 @@ void MidiPlayerDialog::on_fastFastForwardButton_released() {
+ 	smfDriver.setFastForwardingFactor(0);
+ }
+ 
++void MidiPlayerDialog::on_repeatCheckBox_stateChanged(int state) {
++	if (state == Qt::Unchecked) {
++		repeat = false;
++	} else {
++		repeat = true;
++	}
++}
++
+ void MidiPlayerDialog::on_tempoSpinBox_valueChanged(int newValue) {
+ 	if (stopped) return;
+ 	smfDriver.setBPM(newValue);
+@@ -217,11 +226,15 @@ void MidiPlayerDialog::handlePlaybackFinished(bool successful) {
+ 		if (rowPlaying++ == -1 || ui->playList->count() <= rowPlaying) {
+ 			currentItem = NULL;
+ 			if (ui->playList->count() > 0) {
+-				ui->playList->setCurrentRow(0);
++				rowPlaying = 0;
++				ui->playList->setCurrentRow(rowPlaying);
++			} 
++			
++			if (ui->playList->count() == 0 || !repeat) {
++				stopped = true;
++				updateCurrentItem();
++				return;
+ 			}
+-			stopped = true;
+-			updateCurrentItem();
+-			return;
+ 		}
+ 		ui->playList->setCurrentRow(rowPlaying);
+ 		currentItem = ui->playList->currentItem();
+diff --git a/mt32emu_qt/src/MidiPlayerDialog.h b/mt32emu_qt/src/MidiPlayerDialog.h
+index 65b228404..a3d6f2d31 100644
+--- a/mt32emu_qt/src/MidiPlayerDialog.h
++++ b/mt32emu_qt/src/MidiPlayerDialog.h
+@@ -31,6 +31,7 @@ class MidiPlayerDialog : public QDialog {
+ 	bool stopped;
+ 	bool sliderUpdating;
+ 	bool paused;
++	bool repeat;
+ 	const QListWidgetItem *currentItem;
+ 
+ 	void updateCurrentItem();
+@@ -52,6 +53,7 @@ private slots:
+ 	void on_fastForwardButton_released();
+ 	void on_fastFastForwardButton_pressed();
+ 	void on_fastFastForwardButton_released();
++	void on_repeatCheckBox_stateChanged(int state);
+ 	void on_tempoSpinBox_valueChanged(int newValue);
+ 	void on_positionSlider_valueChanged();
+ 	void on_positionSlider_sliderReleased();
+diff --git a/mt32emu_qt/src/MidiPlayerDialog.ui b/mt32emu_qt/src/MidiPlayerDialog.ui
+index 8b6e0faf7..ba9ed6ca7 100644
+--- a/mt32emu_qt/src/MidiPlayerDialog.ui
++++ b/mt32emu_qt/src/MidiPlayerDialog.ui
+@@ -6,7 +6,7 @@
+    <rect>
+     <x>0</x>
+     <y>0</y>
+-    <width>508</width>
++    <width>588</width>
+     <height>282</height>
+    </rect>
+   </property>
+@@ -153,6 +153,22 @@
+          </property>
+         </widget>
+        </item>
++       <item>
++        <widget class="QCheckBox" name="repeatCheckBox">
++         <property name="checked">
++          <bool>true</bool>
++         </property>
++         <property name="sizePolicy">
++          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
++           <horstretch>0</horstretch>
++           <verstretch>0</verstretch>
++          </sizepolicy>
++         </property>
++         <property name="text">
++          <string>Repeat</string>
++         </property>
++        </widget>
++       </item>
+        <item>
+         <widget class="QLabel" name="tempoLabel">
+          <property name="text">
