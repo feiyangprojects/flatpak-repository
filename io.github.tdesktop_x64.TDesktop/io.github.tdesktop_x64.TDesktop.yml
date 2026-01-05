@@ -41,14 +41,13 @@ modules:
       - type: archive
         only-arches:
           - x86_64
-        url: https://github.com/TDesktop-x64/tdesktop/releases/download/v1.1.89/64Gram_1.1.89_linux.zip
-        sha256: 492919391cbcd1709e6cb35928d47f801fb3ab5bf7bc6782f83bd49c94fb34d8
+        url: https://github.com/TDesktop-x64/tdesktop/releases/download/v1.1.92/64Gram_1.1.92_linux.zip
+        sha256: b1b7003f694d250f6dced164c81b5d427e37964b0cd6cce528a697966c8661a4
         x-checker-data:
           type: json
           url: https://api.github.com/repos/TDesktop-x64/tdesktop/releases/latest
           version-query: .tag_name
-          url-query: .assets[] | select(.name | test("_linux\\.zip"))
-            | .browser_download_url
+          url-query: .assets[] | select(.name | test("_linux\\.zip")) | .browser_download_url
       - type: file
         sha256: aed05b3bec314fd0e800b92e20924976fc77d1458798797c8323e65abfd3491d
         url: https://raw.githubusercontent.com/TDesktop-x64/tdesktop/dev/lib/xdg/io.github.tdesktop_x64.TDesktop.desktop
