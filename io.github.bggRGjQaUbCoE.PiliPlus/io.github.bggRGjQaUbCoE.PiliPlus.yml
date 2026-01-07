@@ -21,7 +21,7 @@ finish-args:
 cleanup:
   - /lib/debug
 modules:
-  - shared-modules/libayatana-appindicator/libayatana-appindicator-gtk3.json
+  - ../shared-modules/libayatana-appindicator/libayatana-appindicator-gtk3.json
   - name: shaderc
     buildsystem: cmake
     config-opts:
