@@ -61,8 +61,8 @@ modules:
         #   project-id: 14894
         #   url-template: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/$version.tar.gz
       - type: archive
-        url: https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v2025.4.tar.gz
-        sha256: d256aa82de849bdce4b05060081dadcc9145c2173a056e8531f649f8975e582e
+        url: https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v2025.5.tar.gz
+        sha256: 23769a70967e91f16f1bf8a58665b643fc4e765d734e85c51faa7d990f01a64f
         dest: third_party/spirv-tools
         x-checker-data:
           type: anitya
@@ -74,8 +74,8 @@ modules:
       - /share/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.402.tar.gz
-        sha256: e390fe2f5f5ef7ed9ccbe62eb7cd40d4ee2b57389e7869c0dc96433c81812e7a
+        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.403.tar.gz
+        sha256: 77d0a69e5558d16d33bbb510a09093deaf11c882baf9ef6ec5f18a8ef96e2c13
         x-checker-data:
           type: anitya
           project-id: 5387
@@ -152,8 +152,8 @@ modules:
       - -Dbuild-date=false
     sources:
       - type: archive
-        url: https://github.com/mpv-player/mpv/archive/v0.40.0.tar.gz
-        sha256: 10a0f4654f62140a6dd4d380dcf0bbdbdcf6e697556863dc499c296182f081a3
+        url: https://github.com/mpv-player/mpv/archive/v0.41.0.tar.gz
+        sha256: ee21092a5ee427353392360929dc64645c54479aefdb5babc5cfbb5fad626209
         x-checker-data:
           type: anitya
           project-id: 5348
@@ -183,8 +183,8 @@ modules:
       - type: archive
         only-arches:
           - x86_64
-        url: https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/1.1.5/PiliPlus_linux_1.1.5%2B4403_amd64.tar.gz
-        sha256: 8553585f7cd3b604d6a201457a5d3a6ee7b4fb5b50d46fa1865d7a737f8862f5
+        url: https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/1.1.5.3/PiliPlus_linux_1.1.5%2B4526_amd64.tar.gz
+        sha256: 118e10fa34166d7427b80171a2ed9f77907b8c50fb4687f5aa6ff634200d6ee8
         x-checker-data:
           type: json
           url: https://api.github.com/repos/bggRGjQaUbCoE/PiliPlus/releases/latest
