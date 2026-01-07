@@ -61,8 +61,8 @@ modules:
         #   project-id: 14894
         #   url-template: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/$version.tar.gz
       - type: archive
-        url: https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v2025.5.tar.gz
-        sha256: 23769a70967e91f16f1bf8a58665b643fc4e765d734e85c51faa7d990f01a64f
+        url: https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v2025.4.tar.gz
+        sha256: d256aa82de849bdce4b05060081dadcc9145c2173a056e8531f649f8975e582e
         dest: third_party/spirv-tools
         x-checker-data:
           type: anitya
