@@ -1,0 +1,26 @@
+name: Flatpak CI
+
+on:
+  push:
+    paths:
+      - '.github/workflows/net.blumia.pineapple-tracker-player.yml'
+      - 'net.blumia.pineapple-tracker-player/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    env:
+      APP: net.blumia.pineapple-tracker-player
+      GPG_KEY_ID: ${{ secrets.FLATPAK_GPG_KEY_ID }}
+      RCLONE_CONFIG_PATH: ${{ github.workspace }}/rclone.conf
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Build Flatpak package
+        uses: ./.github/actions/flatpak
+        with:
+          gpg-key: ${{ secrets.FLATPAK_GPG_KEY }}
+          rclone-config: ${{ secrets.FLATPAK_RCLONE_CONFIG }}

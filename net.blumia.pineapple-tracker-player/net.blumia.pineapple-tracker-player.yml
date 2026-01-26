@@ -1,0 +1,71 @@
+id: net.blumia.pineapple-tracker-player
+
+runtime: org.kde.Platform
+runtime-version: '6.10'
+sdk: org.kde.Sdk
+
+command: pineapple-tracker-player
+
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --device=dri
+
+cleanup:
+  - /lib/debug
+
+modules:
+  - name: portaudio
+    buildsystem: autotools
+    config-opts:
+     - --enable-cxx
+    # https://github.com/flathub/com.github.xournalpp.xournalpp/blob/master/com.github.xournalpp.xournalpp.yaml#L155-L157
+    make-args:
+      - -j1
+    cleanup:
+      - /lib/*.a
+      - /lib/*.la
+      - /lib/pkgconfig
+      - /include
+    sources:
+      - type: archive
+        url: https://github.com/PortAudio/portaudio/archive/refs/tags/v19.7.0.tar.gz
+        sha256: 5af29ba58bbdbb7bbcefaaecc77ec8fc413f0db6f4c4e286c40c3e1b83174fa0
+        x-checker-data:
+          type: anitya
+          project-id: 10597
+          url-template: https://github.com/PortAudio/portaudio/archive/refs/tags/v$version.tar.gz
+  - name: libopenmpt
+    buildsystem: autotools
+    cleanup:
+      - /bin
+      - /lib/*.a
+      - /lib/*.la
+      - /lib/pkgconfig
+      - /include
+      - /share/doc
+      - /share/man
+    sources:
+      - type: archive
+        url: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.8.2+release.autotools.tar.gz
+        sha256: 844e4ff98dbd9942bbe4a1048226f91f8bc5b460b7bec6489e67cedb3e0aac37
+        x-checker-data:
+          type: anitya
+          project-id: 141468
+          url-template: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-$version+release.autotools.tar.gz
+  - name: pineapple-tracker-player
+    buildsystem: cmake
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://github.com/BLumia/pineapple-tracker-player/archive/refs/tags/0.6.1.tar.gz
+        sha256: bab5e72f9dc01b2a54ad52d3c4d40ed8142fe653504c8a400cedef8e32802f03
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/BLumia/pineapple-tracker-player/releases/latest
+          version-query: .tag_name
+          url-query: https://github.com/BLumia/pineapple-tracker-player/archive/refs/tags/$version.tar.gz
