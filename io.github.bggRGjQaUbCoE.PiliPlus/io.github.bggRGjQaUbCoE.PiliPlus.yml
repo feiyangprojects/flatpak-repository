@@ -45,7 +45,8 @@ modules:
           project-id: 19047
           url-template: https://github.com/google/shaderc/archive/refs/tags/v$version.tar.gz
       - type: archive
-        url: https://github.com/KhronosGroup/glslang/archive/refs/tags/16.2.0.tar.gz
+        url: 
+          https://github.com/KhronosGroup/glslang/archive/refs/tags/16.2.0.tar.gz
         sha256: 01985335785c97906a91afe3cb5ee015997696181ec6c125bab5555602ba08e2
         dest: third_party/glslang
         x-checker-data:
@@ -74,8 +75,8 @@ modules:
       - /share/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.403.tar.gz
-        sha256: 77d0a69e5558d16d33bbb510a09093deaf11c882baf9ef6ec5f18a8ef96e2c13
+        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.404.tar.gz
+        sha256: 5c14fc99bf193faad1ccc267ccfff14ee4e4550a582b17a76aec72178539f837
         x-checker-data:
           type: anitya
           project-id: 5387
@@ -183,8 +184,9 @@ modules:
       - type: archive
         only-arches:
           - x86_64
-        url: https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/1.1.5.6/PiliPlus_linux_1.1.5%2B4577_amd64.tar.gz
-        sha256: ce3b9e680edfadc2554e8338ac012ff0a932dcda8f031b69254ab4c1f9ec1569
+        url: 
+          https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/1.1.6/PiliPlus_linux_1.1.6%2B4626_amd64.tar.gz
+        sha256: a3ae68d67c51441f3619151b64371a8012e8ccc7d182fb24df916e77439d88fd
         x-checker-data:
           type: json
           url: https://api.github.com/repos/bggRGjQaUbCoE/PiliPlus/releases/latest
