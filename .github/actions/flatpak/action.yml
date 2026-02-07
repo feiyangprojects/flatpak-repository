@@ -15,7 +15,7 @@ runs:
         sudo add-apt-repository --yes ppa:flatpak/stable
         sudo apt update
         sudo apt install --yes flatpak flatpak-builder gnupg rclone
-        sudo flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo
+        sudo flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
       shell: bash
     - name: Get runtime name
       id: runtimeName
