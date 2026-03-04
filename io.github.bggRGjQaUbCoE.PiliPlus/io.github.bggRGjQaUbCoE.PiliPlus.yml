@@ -39,7 +39,8 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 19047
-          url-template: https://github.com/google/shaderc/archive/refs/tags/v$version.tar.gz
+          url-template: 
+            https://github.com/google/shaderc/archive/refs/tags/v$version.tar.gz
       - type: archive
         url: 
           https://github.com/KhronosGroup/glslang/archive/refs/tags/16.2.0.tar.gz
@@ -48,35 +49,41 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 205796
-          url-template: https://github.com/KhronosGroup/glslang/archive/refs/tags/$version.tar.gz
+          url-template: 
+            https://github.com/KhronosGroup/glslang/archive/refs/tags/$version.tar.gz
       - type: archive
-        url: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/vulkan-sdk-1.4.328.1.tar.gz
-        sha256: 602364ab7bf404a7f352df7da5c645f1c4558a9c92616f8ee33422b04d5e35b7
+        url: 
+          https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/vulkan-sdk-1.4.341.0.tar.gz
+        sha256: cab0a654c4917e16367483296b44cdb1d614e3120c721beafcd37e3a8580486c
         dest: third_party/spirv-headers
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 14894
-        #   url-template: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/$version.tar.gz
+        x-checker-data:
+          type: anitya
+          project-id: 334920
+          url-template: 
+            https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/vulkan-sdk-$version.tar.gz
       - type: archive
-        url: https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v2025.4.tar.gz
-        sha256: d256aa82de849bdce4b05060081dadcc9145c2173a056e8531f649f8975e582e
+        url: 
+          https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v2026.1.tar.gz
+        sha256: 35dc16cf2dc64be5b6bbbe86d210e6f4a82b070cffd751605a3365cd8bce2d7e
         dest: third_party/spirv-tools
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 14894
-        #   url-template: https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v$version.tar.gz
+        x-checker-data:
+          type: anitya
+          project-id: 14894
+          url-template: 
+            https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v$version.tar.gz
   - name: hwdata
     buildsystem: autotools
     cleanup:
       - /share/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.404.tar.gz
-        sha256: 5c14fc99bf193faad1ccc267ccfff14ee4e4550a582b17a76aec72178539f837
+        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.405.tar.gz
+        sha256: 13605519e72e46aa13d5eede1901a07a6c83cd25ef866a86e7458047b5c81ce5
         x-checker-data:
           type: anitya
           project-id: 5387
-          url-template: https://github.com/vcrhonek/hwdata/archive/refs/tags/v$version.tar.gz
+          url-template: 
+            https://github.com/vcrhonek/hwdata/archive/refs/tags/v$version.tar.gz
   - name: libass
     buildsystem: meson
     cleanup:
@@ -84,12 +91,14 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/libass/libass/releases/download/0.17.4/libass-0.17.4.tar.xz
+        url: 
+          https://github.com/libass/libass/releases/download/0.17.4/libass-0.17.4.tar.xz
         sha256: 78f1179b838d025e9c26e8fef33f8092f65611444ffa1bfc0cfac6a33511a05a
         x-checker-data:
           type: anitya
           project-id: 1560
-          url-template: https://github.com/libass/libass/releases/download/$version/libass-$version.tar.xz
+          url-template: 
+            https://github.com/libass/libass/releases/download/$version/libass-$version.tar.xz
   - name: libdisplay-info
     buildsystem: meson
     cleanup:
@@ -97,12 +106,14 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/0.3.0/libdisplay-info-0.3.0.tar.gz
+        url: 
+          https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/0.3.0/libdisplay-info-0.3.0.tar.gz
         sha256: 2b467e3336aec63819d6aca28d7310d3dc7415b2b3a3c3a5aec9d3727053c078
         x-checker-data:
           type: anitya
           project-id: 326668
-          url-template: https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/$version/libdisplay-info-$version.tar.gz
+          url-template: 
+            https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/$version/libdisplay-info-$version.tar.gz
   - name: libplacebo
     buildsystem: meson
     config-opts:
@@ -113,15 +124,12 @@ modules:
     sources:
       - type: git
         url: https://github.com/haasn/libplacebo.git
-        tag: v7.351.0
-        commit: 3188549fba13bbdf3a5a98de2a38c2e71f04e21e
+        tag: v7.360.0
+        commit: b2ea27dceb6418aabfe9121174c6dbb232942998
         x-checker-data:
           type: json
           url: https://api.github.com/repos/haasn/libplacebo/releases/latest
           tag-query: .tag_name
-      # Temporary cheery-picked fix for Python 3.14, should be removed after new release
-      - type: patch
-        path: patches/libplacebo/12509c0f1ee8c22ae163017f0a5e7b8a9d983a17.patch
   - name: libXpresent
     buildsystem: meson
     cleanup:
@@ -130,12 +138,14 @@ modules:
       - /share/man
     sources:
       - type: archive
-        url: https://xorg.freedesktop.org/archive/individual/lib/libXpresent-1.0.2.tar.xz
+        url: 
+          https://xorg.freedesktop.org/archive/individual/lib/libXpresent-1.0.2.tar.xz
         sha256: 4e5b21b4812206a4b223013606ae31170502c1043038777a1ef8f70c09d37602
         x-checker-data:
           type: anitya
           project-id: 17166
-          url-template: https://xorg.freedesktop.org/archive/individual/lib/libXpresent-$version.tar.xz
+          url-template: 
+            https://xorg.freedesktop.org/archive/individual/lib/libXpresent-$version.tar.xz
   - name: libmpv
     cleanup:
       - /include
@@ -154,16 +164,20 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 5348
-          url-template: https://github.com/mpv-player/mpv/archive/v$version.tar.gz
+          url-template: 
+            https://github.com/mpv-player/mpv/archive/v$version.tar.gz
   - name: piliplus
     buildsystem: simple
     build-commands:
-      - install -Dm644 data/flutter_assets/assets/images/logo/logo.png /app/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
+      - install -Dm644 data/flutter_assets/assets/images/logo/logo.png 
+        /app/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
       - cp -r . /app/share/piliplus
       - mkdir -p /app/bin
       - ln -s /app/share/piliplus/piliplus /app/bin/piliplus
-      - install -Dm644 io.github.bggRGjQaUbCoE.PiliPlus.desktop -t /app/share/applications/
-      - install -Dm644 io.github.bggRGjQaUbCoE.PiliPlus.metainfo.xml -t /app/share/metainfo/
+      - install -Dm644 io.github.bggRGjQaUbCoE.PiliPlus.desktop -t 
+        /app/share/applications/
+      - install -Dm644 io.github.bggRGjQaUbCoE.PiliPlus.metainfo.xml -t 
+        /app/share/metainfo/
     sources:
       #- type: archive
       #  only-arches:
@@ -180,14 +194,15 @@ modules:
         only-arches:
           - x86_64
         url: 
-          https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/1.1.6/PiliPlus_linux_1.1.6%2B4626_amd64.tar.gz
-        sha256: a3ae68d67c51441f3619151b64371a8012e8ccc7d182fb24df916e77439d88fd
+          https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.0.1/PiliPlus_linux_2.0.0%2B4721_amd64.tar.gz
+        sha256: 647c7c9011402dd86f3895accc06c874913c5517f77db76a4111cbdd357411a3
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/bggRGjQaUbCoE/PiliPlus/releases/latest
+          url: 
+            https://api.github.com/repos/bggRGjQaUbCoE/PiliPlus/releases/latest
           version-query: .tag_name
-          url-query: .assets[] | select(.name | test("PiliPlus_linux_.+_amd64\\.tar\\.gz"))
-            | .browser_download_url
+          url-query: .assets[] | select(.name | 
+            test("PiliPlus_linux_.+_amd64\\.tar\\.gz")) | .browser_download_url
       - type: file
         path: io.github.bggRGjQaUbCoE.PiliPlus.desktop
       - type: file
