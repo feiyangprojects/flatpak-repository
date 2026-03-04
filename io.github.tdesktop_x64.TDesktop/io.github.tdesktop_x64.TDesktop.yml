@@ -30,33 +30,44 @@ modules:
   - name: tdesktop-x64
     buildsystem: simple
     build-commands:
-      - sed -Ei 's#(Exec=).+#\1/app/bin/Telegram#' io.github.tdesktop_x64.TDesktop.service
+      - sed -Ei 's#(Exec=).+#\1/app/bin/Telegram#' 
+        io.github.tdesktop_x64.TDesktop.service
       - mkdir -p /app/share/dbus-1/services/
       - install -Dm755 Telegram -t /app/bin/
-      - install -Dm644 io.github.tdesktop_x64.TDesktop.desktop -t /app/share/applications/
-      - install -Dm644 io.github.tdesktop_x64.TDesktop.service /app/share/dbus-1/services/
+      - install -Dm644 io.github.tdesktop_x64.TDesktop.desktop -t 
+        /app/share/applications/
+      - install -Dm644 io.github.tdesktop_x64.TDesktop.service 
+        /app/share/dbus-1/services/
       - install -Dm644 icon512.png -t /app/share/icons/hicolor/512x512/apps/
-      - install -Dm644 io.github.tdesktop_x64.TDesktop.metainfo.xml -t /app/share/metainfo/
+      - install -Dm644 io.github.tdesktop_x64.TDesktop.metainfo.xml -t 
+        /app/share/metainfo/
     sources:
       - type: archive
         only-arches:
           - x86_64
-        url: https://github.com/TDesktop-x64/tdesktop/releases/download/v1.1.93/64Gram_1.1.93_linux.zip
-        sha256: 134cf7bd5a0d77609a2614ce2354411d95b6750c7f7f870e47891d61997a4837
+        url: 
+          https://github.com/TDesktop-x64/tdesktop/releases/download/v1.1.95/64Gram_1.1.95_linux.zip
+        sha256: 18da7255aff57026cfdc93df0824276d8bfec1bb471aaf8ad6ae8355ea0c0a91
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/TDesktop-x64/tdesktop/releases/latest
+          url: 
+            https://api.github.com/repos/TDesktop-x64/tdesktop/releases/latest
           version-query: .tag_name
-          url-query: .assets[] | select(.name | test("_linux\\.zip")) | .browser_download_url
+          url-query: .assets[] | select(.name | test("_linux\\.zip")) | 
+            .browser_download_url
       - type: file
         sha256: aed05b3bec314fd0e800b92e20924976fc77d1458798797c8323e65abfd3491d
-        url: https://raw.githubusercontent.com/TDesktop-x64/tdesktop/dev/lib/xdg/io.github.tdesktop_x64.TDesktop.desktop
+        url: 
+          https://raw.githubusercontent.com/TDesktop-x64/tdesktop/dev/lib/xdg/io.github.tdesktop_x64.TDesktop.desktop
       - type: file
         sha256: 9783e323dc25e3b074c8762b5c071796cf22bb725ae763a09119c77f37236844
-        url: https://raw.githubusercontent.com/TDesktop-x64/tdesktop/refs/heads/dev/lib/xdg/io.github.tdesktop_x64.TDesktop.service
+        url: 
+          https://raw.githubusercontent.com/TDesktop-x64/tdesktop/refs/heads/dev/lib/xdg/io.github.tdesktop_x64.TDesktop.service
       - type: file
         sha256: 7b89613d8962a04afbf36db62449c93839d9b74258e8d46d8a43800d8783e55c
-        url: https://raw.githubusercontent.com/TDesktop-x64/tdesktop/refs/heads/dev/lib/xdg/io.github.tdesktop_x64.TDesktop.metainfo.xml
+        url: 
+          https://raw.githubusercontent.com/TDesktop-x64/tdesktop/refs/heads/dev/lib/xdg/io.github.tdesktop_x64.TDesktop.metainfo.xml
       - type: file
         sha256: e297771c75bd2f81d637a3234f83568be62092f67d16946be23895fa92fa7119
-        url: https://raw.githubusercontent.com/TDesktop-x64/tdesktop/refs/heads/dev/Telegram/Resources/art/icon512.png
+        url: 
+          https://raw.githubusercontent.com/TDesktop-x64/tdesktop/refs/heads/dev/Telegram/Resources/art/icon512.png
