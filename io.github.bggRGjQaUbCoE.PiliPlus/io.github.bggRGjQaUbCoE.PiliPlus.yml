@@ -124,8 +124,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/haasn/libplacebo.git
-        tag: v7.360.0
-        commit: b2ea27dceb6418aabfe9121174c6dbb232942998
+        tag: v7.360.1
+        commit: cee9b076f2c63104ccfd497fa79c39a867293ec4
         x-checker-data:
           type: json
           url: https://api.github.com/repos/haasn/libplacebo/releases/latest
@@ -194,8 +194,8 @@ modules:
         only-arches:
           - x86_64
         url: 
-          https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.0.1/PiliPlus_linux_2.0.0%2B4721_amd64.tar.gz
-        sha256: 647c7c9011402dd86f3895accc06c874913c5517f77db76a4111cbdd357411a3
+          https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.1.1/PiliPlus_linux_2.0.1%2B4775_amd64.tar.gz
+        sha256: 847d3549292a8b275837823ea65e448e6a63b861ad776c28c1d6fedf00456c1c
         x-checker-data:
           type: json
           url: 
