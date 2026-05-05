@@ -34,8 +34,8 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/google/shaderc/archive/refs/tags/v2026.1.tar.gz
-        sha256: 245002feccbe7f8361b223545a5654cea69780745886872d7efff50a38d96c66
+        url: https://github.com/google/shaderc/archive/refs/tags/v2026.2.tar.gz
+        sha256: f924178e75e3293082481b25ed64d5e48a795b479dac3bd3c83d23070855df42
         x-checker-data:
           type: anitya
           project-id: 19047
@@ -43,8 +43,8 @@ modules:
             https://github.com/google/shaderc/archive/refs/tags/v$version.tar.gz
       - type: archive
         url: 
-          https://github.com/KhronosGroup/glslang/archive/refs/tags/16.2.0.tar.gz
-        sha256: 01985335785c97906a91afe3cb5ee015997696181ec6c125bab5555602ba08e2
+          https://github.com/KhronosGroup/glslang/archive/refs/tags/16.3.0.tar.gz
+        sha256: efff5a15258dce1ca2d323bf64c974f5fca03778174615dbc30c8d36db645bf5
         dest: third_party/glslang
         x-checker-data:
           type: anitya
