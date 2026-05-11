@@ -46,8 +46,8 @@ modules:
         only-arches:
           - x86_64
         url: 
-          https://github.com/TDesktop-x64/tdesktop/releases/download/v1.2.0/64Gram_1.2.0_linux.zip
-        sha256: 62f539cbcd15012e92b74366c6f8efb4f0a7e2adfdb8aa9225d89eba09d10d2b
+          https://github.com/TDesktop-x64/tdesktop/releases/download/v1.2.2/64Gram_1.2.2_linux.zip
+        sha256: abd405246488636175e205c9c7bfad1c13343ba4850659106f25aba377c8b4d3
         x-checker-data:
           type: json
           url: 
