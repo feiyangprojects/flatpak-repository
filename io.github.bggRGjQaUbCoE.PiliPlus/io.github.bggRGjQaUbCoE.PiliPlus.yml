@@ -77,8 +77,8 @@ modules:
       - /share/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.406.tar.gz
-        sha256: 1ccfd1ca723595b1fe8794f4157ec5635be1ebedb5d13769b4be75d0b75bc199
+        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.407.tar.gz
+        sha256: 6a88f6f5cb510fbfaa9c49488348b7fcd7aa209b0a331f24dfebb1c8c339568b
         x-checker-data:
           type: anitya
           project-id: 5387
@@ -194,8 +194,8 @@ modules:
         only-arches:
           - x86_64
         url: 
-          https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.7/PiliPlus_linux_2.0.7%2B4940_amd64.tar.gz
-        sha256: 3e81fd65f23a0f74d93525f72c21329352d291e56f783f91403b245f6a268129
+          https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.7.1/PiliPlus_linux_2.0.7%2B4946_amd64.tar.gz
+        sha256: f3dabec9ec5d0e1a520d5bd983417176346c102513fa142d4467be1303a57058
         x-checker-data:
           type: json
           url: 
