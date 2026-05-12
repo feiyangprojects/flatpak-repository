@@ -4,9 +4,9 @@ runtime: org.freedesktop.Platform
 runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 
-command: Telegram
+command: Telegram.sh
 
-rename-icon: icon512
+rename-icon: Telegram
 
 finish-args:
   - --share=ipc
@@ -34,11 +34,12 @@ modules:
         io.github.tdesktop_x64.TDesktop.service
       - mkdir -p /app/share/dbus-1/services/
       - install -Dm755 Telegram -t /app/bin/
+      - install -Dm644 Telegram.sh -t /app/bin/
       - install -Dm644 io.github.tdesktop_x64.TDesktop.desktop -t 
         /app/share/applications/
       - install -Dm644 io.github.tdesktop_x64.TDesktop.service 
         /app/share/dbus-1/services/
-      - install -Dm644 icon512.png -t /app/share/icons/hicolor/512x512/apps/
+      - install -Dm644 Telegram.png -t /app/share/icons/hicolor/512x512/apps/
       - install -Dm644 io.github.tdesktop_x64.TDesktop.metainfo.xml -t 
         /app/share/metainfo/
     sources:
@@ -68,6 +69,9 @@ modules:
         url: 
           https://raw.githubusercontent.com/TDesktop-x64/tdesktop/refs/heads/dev/lib/xdg/io.github.tdesktop_x64.TDesktop.metainfo.xml
       - type: file
+        dest-filename: Telegram.png
         sha256: e297771c75bd2f81d637a3234f83568be62092f67d16946be23895fa92fa7119
         url: 
           https://raw.githubusercontent.com/TDesktop-x64/tdesktop/refs/heads/dev/Telegram/Resources/art/icon512.png
+      - type: file
+        path: Telegram.sh
