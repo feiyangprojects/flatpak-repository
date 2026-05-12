@@ -89,11 +89,13 @@ runs:
     - name: Setup Rclone configuration
       env:
         RCLONE_CONFIG: ${{ inputs.rclone-config }}
-      run: base64 -d <<< "$RCLONE_CONFIG" > "$RCLONE_CONFIG_PATH"
+      run: |
+        mkdir -p ~/.config/rclone
+        base64 -d <<< "$RCLONE_CONFIG" > ~/.config/rclone/rclone.conf
       shell: bash
     - name: Publish Flatpak bundle
       working-directory: ${{ env.APP }}
-      run: rclone --verbose --config "$RCLONE_CONFIG_PATH" copy "bundle-dir/$APP.flatpak" 'storage:flatpakbundle'
+      run: rclone --verbose copy "bundle-dir/$APP.flatpak" 'storage:flatpakbundle'
       shell: bash
     - name: Setup GnuPG configuration
       env:
@@ -105,7 +107,7 @@ runs:
       shell: bash
     - name: Sync Flatpak bundle
       working-directory: ${{ env.APP }}
-      run: rclone --verbose --config "$RCLONE_CONFIG_PATH" sync 'storage:flatpakbundle' 'bundle-dir'
+      run: rclone --verbose sync 'storage:flatpakbundle' 'bundle-dir'
       shell: bash
     - name: Build Flatpak repository
       working-directory: ${{ env.APP }}
@@ -116,5 +118,5 @@ runs:
     - name: Publish Flatpak repository
       working-directory: ${{ env.APP }}
       run: |
-        rclone --verbose --config "$RCLONE_CONFIG_PATH" --transfers 16 sync 'repository-dir' 'storage:flatpak'
+        rclone --verbose --transfers 16 sync 'repository-dir' 'storage:flatpak'
       shell: bash

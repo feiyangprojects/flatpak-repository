@@ -3,6 +3,7 @@ name: Flatpak CI
 on:
   push:
     paths:
+      - '.github/actions/flatpak/action.yml'
       - '.github/workflows/io.github.bggRGjQaUbCoE.PiliPlus.yml'
       - 'io.github.bggRGjQaUbCoE.PiliPlus/**'
   workflow_dispatch:
@@ -13,7 +14,6 @@ jobs:
     env:
       APP: io.github.bggRGjQaUbCoE.PiliPlus
       GPG_KEY_ID: ${{ secrets.FLATPAK_GPG_KEY_ID }}
-      RCLONE_CONFIG_PATH: ${{ github.workspace }}/rclone.conf
     steps:
       - name: Checkout source code
         uses: actions/checkout@v5
