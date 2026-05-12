@@ -34,7 +34,7 @@ modules:
         io.github.tdesktop_x64.TDesktop.service
       - mkdir -p /app/share/dbus-1/services/
       - install -Dm755 Telegram -t /app/bin/
-      - install -Dm644 Telegram.sh -t /app/bin/
+      - install -Dm755 Telegram.sh -t /app/bin/
       - install -Dm644 io.github.tdesktop_x64.TDesktop.desktop -t 
         /app/share/applications/
       - install -Dm644 io.github.tdesktop_x64.TDesktop.service 
