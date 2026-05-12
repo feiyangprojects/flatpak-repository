@@ -118,5 +118,5 @@ runs:
     - name: Publish Flatpak repository
       working-directory: ${{ env.APP }}
       run: |
-        rclone --verbose --transfers 16 sync 'repository-dir' 'storage:flatpak'
+        rclone --checksum --no-update-modtime --verbose --transfers 16 sync 'repository-dir' 'storage:flatpak'
       shell: bash
