@@ -53,8 +53,8 @@ modules:
             https://github.com/KhronosGroup/glslang/archive/refs/tags/$version.tar.gz
       - type: archive
         url: 
-          https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/vulkan-sdk-1.4.341.0.tar.gz
-        sha256: cab0a654c4917e16367483296b44cdb1d614e3120c721beafcd37e3a8580486c
+          https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/vulkan-sdk-1.4.350.0.tar.gz
+        sha256: 9905d9341f20388adb852c77dd982f2c4d539fd68e6c1f1bcebf034715f2d1d5
         dest: third_party/spirv-headers
         x-checker-data:
           type: anitya
@@ -63,8 +63,8 @@ modules:
             https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/vulkan-sdk-$version.tar.gz
       - type: archive
         url: 
-          https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v2026.1.tar.gz
-        sha256: 35dc16cf2dc64be5b6bbbe86d210e6f4a82b070cffd751605a3365cd8bce2d7e
+          https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v2026.2.tar.gz
+        sha256: b4390652e64ab188eede9d556cf183b3c1c4be44d4fcd104b0d4af3bea2712d1
         dest: third_party/spirv-tools
         x-checker-data:
           type: anitya
@@ -77,8 +77,8 @@ modules:
       - /share/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.407.tar.gz
-        sha256: 6a88f6f5cb510fbfaa9c49488348b7fcd7aa209b0a331f24dfebb1c8c339568b
+        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.408.tar.gz
+        sha256: ac7c34efc5941d5cbf739a8f7f6c84b1c2edea493fd3fca10906ef64d7afd690
         x-checker-data:
           type: anitya
           project-id: 5387
@@ -194,8 +194,8 @@ modules:
         only-arches:
           - x86_64
         url: 
-          https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.7.1/PiliPlus_linux_2.0.7%2B4946_amd64.tar.gz
-        sha256: f3dabec9ec5d0e1a520d5bd983417176346c102513fa142d4467be1303a57058
+          https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.8/PiliPlus_linux_2.0.8%2B5014_amd64.tar.gz
+        sha256: 37b7942c42b871f910beb1313e2345483901dcfe90179e4a593832e59f3b515f
         x-checker-data:
           type: json
           url: 
