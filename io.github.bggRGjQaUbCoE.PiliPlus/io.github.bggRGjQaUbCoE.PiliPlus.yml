@@ -53,8 +53,8 @@ modules:
             https://github.com/KhronosGroup/glslang/archive/refs/tags/$version.tar.gz
       - type: archive
         url: 
-          https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/vulkan-sdk-1.4.350.0.tar.gz
-        sha256: 9905d9341f20388adb852c77dd982f2c4d539fd68e6c1f1bcebf034715f2d1d5
+          https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/vulkan-sdk-1.4.350.1.tar.gz
+        sha256: 9e6d5c78878172d2b810e97f3a74ecbbb14b4ad52b07384ce915fbbeb226d610
         dest: third_party/spirv-headers
         x-checker-data:
           type: anitya
@@ -92,8 +92,8 @@ modules:
     sources:
       - type: archive
         url: 
-          https://github.com/libass/libass/releases/download/0.17.4/libass-0.17.4.tar.xz
-        sha256: 78f1179b838d025e9c26e8fef33f8092f65611444ffa1bfc0cfac6a33511a05a
+          https://github.com/libass/libass/releases/download/0.17.5/libass-0.17.5.tar.xz
+        sha256: 2dca25c0e0c837ddf00b52011b3f82cac1e4ddd3ad018227806b0c2288864acc
         x-checker-data:
           type: anitya
           project-id: 1560
