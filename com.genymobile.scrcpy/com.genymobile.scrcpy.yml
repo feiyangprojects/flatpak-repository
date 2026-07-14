@@ -50,8 +50,8 @@ modules:
     sources:
       - type: archive
         url: 
-          https://github.com/protocolbuffers/protobuf/releases/download/v34.1/protobuf-34.1.tar.gz
-        sha256: e4e6ff10760cf747a2decd1867741f561b216bd60cc4038c87564713a6da1848
+          https://github.com/protocolbuffers/protobuf/releases/download/v35.1/protobuf-35.1.tar.gz
+        sha256: f0b6838e7522a8da96126d487068c959bc624926368f3024ac8fd03abd0a1ac4
         x-checker-data:
           type: anitya
           project-id: 3715
@@ -71,8 +71,8 @@ modules:
     sources:
       - type: archive
         url: 
-          https://github.com/nmeum/android-tools/releases/download/35.0.2/android-tools-35.0.2.tar.xz
-        sha256: d2c3222280315f36d8bfa5c02d7632b47e365bfe2e77e99a3564fb6576f04097
+          https://github.com/nmeum/android-tools/releases/download/36.0.1/android-tools-36.0.1.tar.xz
+        sha256: 38e8a84b739480141de0836bf6d581b3339ac7d53d0f7ce8c044a3368c8c2f8f
         x-checker-data:
           type: anitya
           project-id: 226905
@@ -94,8 +94,8 @@ modules:
       - /share/zsh
     sources:
       - type: archive
-        url: https://github.com/Genymobile/scrcpy/archive/refs/tags/v4.0.tar.gz
-        sha256: a62bc2639e1d56b3e7ebaa20d8deb4947dd02954b3362bdebe2ef9f7eae41b00
+        url: https://github.com/Genymobile/scrcpy/archive/refs/tags/v4.1.tar.gz
+        sha256: 537b2ade623cb94b6edddfa5c61bf0b0af21484aa8365ea2531b686ea573249a
         x-checker-data:
           type: anitya
           project-id: 226924
@@ -103,8 +103,8 @@ modules:
             https://github.com/Genymobile/scrcpy/archive/refs/tags/v$version.tar.gz
       - type: file
         url: 
-          https://github.com/Genymobile/scrcpy/releases/download/v4.0/scrcpy-server-v4.0
-        sha256: 84924bd564a1eb6089c872c7521f968058977f91f5ff02514a8c74aff3210f3a
+          https://github.com/Genymobile/scrcpy/releases/download/v4.1/scrcpy-server-v4.1
+        sha256: deacb991ed2509715160ffdc7907e47b4160eb30d1566217e9047fd5b8850cae
         dest-filename: scrcpy-server
         x-checker-data:
           type: anitya
