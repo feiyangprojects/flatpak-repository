@@ -10,4 +10,4 @@ elif [ "$ADB_DEVICE_EXITCODE" != '' ]; then
     zenity --error --text "No Android device detected!\nHave you connected your device and enabled USB debugging?"
     exit 1
 fi
-scrcpy $@
+exec scrcpy "$@"
