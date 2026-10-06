@@ -34,8 +34,8 @@ modules:
     sources:
       - type: archive
         url: 
-          https://github.com/google/googletest/releases/download/v1.17.0/googletest-1.17.0.tar.gz
-        sha256: 65fab701d9829d38cb77c14acdc431d2108bfdbf8979e40eb8ae567edf10b27c
+          https://github.com/google/googletest/releases/download/v1.18.0/googletest-1.18.0.tar.gz
+        sha256: 6e3191c1455468b3fc35a417fb565c1c5071aee1b7e7f85e30cf48a98d37d8b5
         x-checker-data:
           type: anitya
           project-id: 18290
@@ -50,8 +50,8 @@ modules:
     sources:
       - type: archive
         url: 
-          https://github.com/protocolbuffers/protobuf/releases/download/v35.1/protobuf-35.1.tar.gz
-        sha256: f0b6838e7522a8da96126d487068c959bc624926368f3024ac8fd03abd0a1ac4
+          https://github.com/protocolbuffers/protobuf/releases/download/v36.2/protobuf-36.2.tar.gz
+        sha256: 3d9642a662d10e68ebae5e53f14dcce5105684212d5078f8e0d47d1ab3ae6b64
         x-checker-data:
           type: anitya
           project-id: 3715
@@ -71,8 +71,8 @@ modules:
     sources:
       - type: archive
         url: 
-          https://github.com/nmeum/android-tools/releases/download/36.0.1/android-tools-36.0.1.tar.xz
-        sha256: 38e8a84b739480141de0836bf6d581b3339ac7d53d0f7ce8c044a3368c8c2f8f
+          https://github.com/nmeum/android-tools/releases/download/37.0.0/android-tools-37.0.0.tar.xz
+        sha256: 2725d09f892a3a38e534429f47a321f58ecf6a3169caa42c915fb2cb7d46be0e
         x-checker-data:
           type: anitya
           project-id: 226905
@@ -94,8 +94,8 @@ modules:
       - /share/zsh
     sources:
       - type: archive
-        url: https://github.com/Genymobile/scrcpy/archive/refs/tags/v4.1.tar.gz
-        sha256: 537b2ade623cb94b6edddfa5c61bf0b0af21484aa8365ea2531b686ea573249a
+        url: https://github.com/Genymobile/scrcpy/archive/refs/tags/v5.0.tar.gz
+        sha256: a431f6ed9e63629938464bbfe92b022d6dddf09d7e1d52758b3fc5b52d4c4b03
         x-checker-data:
           type: anitya
           project-id: 226924
@@ -103,8 +103,8 @@ modules:
             https://github.com/Genymobile/scrcpy/archive/refs/tags/v$version.tar.gz
       - type: file
         url: 
-          https://github.com/Genymobile/scrcpy/releases/download/v4.1/scrcpy-server-v4.1
-        sha256: deacb991ed2509715160ffdc7907e47b4160eb30d1566217e9047fd5b8850cae
+          https://github.com/Genymobile/scrcpy/releases/download/v5.0/scrcpy-server-v5.0
+        sha256: 26cbc9ad0aced6c2282455bef4fb43462605c1f8758c74b4ab1dbf818c229daa
         dest-filename: scrcpy-server
         x-checker-data:
           type: anitya
