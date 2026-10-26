@@ -8,6 +8,11 @@ on:
       - 'io.github.tdesktop_x64.TDesktop/**'
   workflow_dispatch:
 
+concurrency:
+  group: flatpak
+  cancel-in-progress: false
+  queue: max
+
 jobs:
   build:
     runs-on: ubuntu-24.04

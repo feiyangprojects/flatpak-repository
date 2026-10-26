@@ -8,6 +8,11 @@ on:
       - 'dev.miao.Clashctl/**'
   workflow_dispatch:
 
+concurrency:
+  group: flatpak
+  cancel-in-progress: false
+  queue: max
+
 jobs:
   build:
     runs-on: ubuntu-24.04
