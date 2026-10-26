@@ -194,8 +194,8 @@ modules:
         only-arches:
           - x86_64
         url: 
-          https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.1.6/PiliPlus_linux_2.1.6%2B5453_amd64.tar.gz
-        sha256: 6dfa44dde6dc0ccc7769b90e40af71e9d899349a8c5c31db671a42ddd4639ab1
+          https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.1.6.2/PiliPlus_linux_2.1.6%2B5472_amd64.tar.gz
+        sha256: 271e7911f0a4a676cce7f3584f598980e15a583e683cc39595bf13c13940a052
         x-checker-data:
           type: json
           url: 
